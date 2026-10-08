@@ -51,6 +51,11 @@ nav a {
 }
 nav a:hover { background: var(--fg); color: var(--bg); }
 
+/* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
+body::before { content: ""; position: fixed; z-index: -1; inset: 0; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.88)), url("images/taproom.jpg") center / cover no-repeat; }
+/* Header: solid black strip across the full width of the screen */
+header { position: relative; isolation: isolate; padding-bottom: 28px; }
+header::before { content: ""; position: absolute; z-index: -1; top: -20px; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; border-bottom: 1px solid var(--line); }
 /* headline */
 h1 {
   font-family: var(--text);
@@ -95,10 +100,6 @@ ul.facts { list-style: none; margin: 32px 0 0; padding: 0; font-size: 1.25rem; }
 ul.facts li { padding-block: 12px; border-top: 1px solid var(--line); }
 ul.facts li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Venues section: taproom photo as a full-width dimmed backdrop. Fixed attachment gives a parallax drift on desktop. */
-#venues { position: relative; isolation: isolate; border: 0; padding: 72px 0 80px; }
-#venues::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.86)), url("images/taproom.jpg") center / cover fixed; }
-@media (max-width: 800px), (prefers-reduced-motion: reduce) { #venues::before { background-attachment: scroll; } }
 /* enquire */
 .email { display: block; font-size: clamp(1.5rem, 6vw, 2.6rem); letter-spacing: 0.03em; overflow-wrap: anywhere; margin: 8px 0 24px; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
