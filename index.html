@@ -75,7 +75,8 @@ h1 {
   display: grid;
   place-items: center;
 }
-.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo { overflow: hidden; }
+.photo img { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; object-fit: cover; display: block; will-change: transform; }
 .photo img.game { object-fit: cover; object-position: 62% 50%; image-rendering: pixelated; }
 .photo svg { width: 50%; height: auto; display: block; }
 .note { position: absolute; left: 0; right: 0; bottom: 10px; font-size: 0.75rem; color: var(--muted); }
@@ -220,6 +221,30 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
       }, select);
     } catch (e) { select(); }
   });
+})();
+
+// Gentle parallax on the tile photos. Skipped if the visitor prefers reduced motion.
+(function () {
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) return;
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.photo img'));
+  if (!imgs.length) return;
+  var ticking = false;
+  function update() {
+    var vh = window.innerHeight || 1;
+    imgs.forEach(function (img) {
+      var box = img.parentNode.getBoundingClientRect();
+      if (box.bottom < 0 || box.top > vh) return;
+      var p = (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2);
+      p = Math.max(-1, Math.min(1, p));
+      img.style.transform = 'translate3d(0,' + (p * box.height * -0.09).toFixed(1) + 'px,0)';
+    });
+    ticking = false;
+  }
+  function onScroll() { if (!ticking) { ticking = true; window.requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
 </script>
 
