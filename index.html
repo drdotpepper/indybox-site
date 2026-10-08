@@ -33,6 +33,7 @@ body {
   line-height: 1.15;
   padding-inline: 20px;
   padding-block: 20px 32px;
+  overflow-x: clip;
 }
 .wrap { max-width: 1100px; margin-inline: auto; }
 a { color: inherit; }
@@ -94,9 +95,10 @@ ul.facts { list-style: none; margin: 32px 0 0; padding: 0; font-size: 1.25rem; }
 ul.facts li { padding-block: 12px; border-top: 1px solid var(--line); }
 ul.facts li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Venues section: taproom photo as a dimmed backdrop. Fixed attachment gives a parallax drift on desktop. */
-#venues { padding: 48px 20px 56px; border: 1px solid var(--line); background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.86)), url("images/taproom.jpg") center / cover fixed; }
-@media (max-width: 800px), (prefers-reduced-motion: reduce) { #venues { background-attachment: scroll; } }
+/* Venues section: taproom photo as a full-width dimmed backdrop. Fixed attachment gives a parallax drift on desktop. */
+#venues { position: relative; isolation: isolate; border: 0; padding: 72px 0 80px; }
+#venues::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.86)), url("images/taproom.jpg") center / cover fixed; }
+@media (max-width: 800px), (prefers-reduced-motion: reduce) { #venues::before { background-attachment: scroll; } }
 /* enquire */
 .email { display: block; font-size: clamp(1.5rem, 6vw, 2.6rem); letter-spacing: 0.03em; overflow-wrap: anywhere; margin: 8px 0 24px; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
