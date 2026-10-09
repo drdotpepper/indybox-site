@@ -60,12 +60,9 @@ header { position: relative; isolation: isolate; }
 header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
 .brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
 nav { position: relative; margin-top: 40px; }
-nav::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: -23px; left: -22px; right: -20px; background: #000; border-radius: 0 0 22px 22px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
-nav::after { content: ""; position: absolute; z-index: -1; top: -10px; left: -44px; right: -42px; height: 22px;
-  background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px) left top / 22px 22px no-repeat, radial-gradient(circle at 100% 100%, transparent 21px, #000 22px) right top / 22px 22px no-repeat; }
 @media (max-width: 900px) { header { align-items: center; } nav { margin-top: 0; padding-bottom: 20px; } .brand::after, nav::after { display: none; } }
 /* headline */
 h1 {
