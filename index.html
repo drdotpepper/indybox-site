@@ -40,8 +40,8 @@ a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
 /* header: centred */
-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; padding-block: 0 0;  text-align: left; }
-.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 32px; padding: 0; text-align: left; }
+.brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 16px 18px; }
 .mark { display: block; width: min(212px, 70vw); line-height: 0; }
 .mark img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
 p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 1; letter-spacing: 0.02em; white-space: nowrap; }
@@ -55,8 +55,12 @@ nav a:hover { background: var(--fg); color: var(--bg); }
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
 body::before { content: ""; position: fixed; z-index: -1; inset: 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
-header { position: relative; isolation: isolate; padding-block: 18px; }
-header::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
+header { position: relative; isolation: isolate; }
+/* Black top strip + two black panels with rounded bottom corners; photo shows between them */
+header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
+.brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
+nav { position: relative; margin-block: 0; }
+nav::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: -23px; left: -22px; right: -20px; background: #000; border-radius: 0 0 22px 22px; }
 /* headline */
 h1 {
   font-family: var(--text);
