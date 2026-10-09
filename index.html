@@ -32,46 +32,47 @@ body {
   font-size: 1.3rem;
   line-height: 1.15;
   padding-inline: 20px;
-  padding-block: 20px 32px;
+  padding-block: 0 32px;
   overflow-x: clip;
 }
-.wrap { max-width: 1100px; margin-inline: auto; }
+.wrap { max-width: 1175px; margin-inline: auto; }
 a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
 /* header: centred */
-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; max-width: 1100px; margin-inline: auto; padding-block: 4px 8px; text-align: left; }
-.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.mark { display: block; width: min(250px, 70vw); line-height: 0; }
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; padding-block: 0 0; min-height: 131px; text-align: left; }
+.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.mark { display: block; width: min(245px, 70vw); line-height: 0; }
 .mark img { display: block; width: 100%; height: auto; }
-p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 1.1; letter-spacing: 0.02em; white-space: nowrap; }
-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 1; letter-spacing: 0.02em; white-space: nowrap; }
+nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 18px; }
 nav a {
-  font-family: var(--pixel); font-weight: 400; font-size: 1.2rem; line-height: 1; letter-spacing: 0.04em;
-  text-decoration: none; border: 1px solid var(--fg); padding: 9px 16px;
+  font-family: var(--pixel); font-weight: 400; font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em;
+  text-decoration: none; border: 1px solid var(--fg); padding: 12px 26px 11px;
 }
 nav a:hover { background: var(--fg); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
 body::before { content: ""; position: fixed; z-index: -1; inset: 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
-header { position: relative; isolation: isolate; padding-bottom: 16px; }
-header::before { content: ""; position: absolute; z-index: -1; top: -20px; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; border-bottom: 1px solid var(--line); }
+header { position: relative; isolation: isolate; padding-block: 6px 0; }
+header::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; border-bottom: 1px solid var(--line); }
 /* headline */
 h1 {
   font-family: var(--text);
   font-weight: 400;
-  font-size: clamp(2.4rem, 7vw, 4.2rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4.6vw, 3.7rem);
+  line-height: 1.18;
   letter-spacing: 0.02em;
   text-align: center;
   text-wrap: balance;
   overflow-wrap: break-word;
-  margin: 72px 0 56px;
+  margin: 84px auto 70px;
+  max-width: 1040px;
 }
 
 /* tiles */
-.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 48px); }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 53px); }
 .tile { display: block; text-decoration: none; text-align: center; min-width: 0; }
 .photo {
   position: relative;
@@ -128,7 +129,6 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
       <a href="#story">Story</a>
       <a href="#venues">Venues</a>
       <a href="#devs">Devs</a>
-      <a href="#at-home">At home</a>
       <a href="#enquire">Enquire</a>
     </nav>
   </header>
