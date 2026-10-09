@@ -40,7 +40,7 @@ a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
 /* header: centred */
-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 32px; padding: 0; text-align: left; }
+header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0 32px; padding: 0; text-align: left; }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 16px 18px; }
 .mark { display: block; width: min(212px, 70vw); line-height: 0; }
 .mark img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
@@ -59,8 +59,14 @@ header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
 header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
 .brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
-nav { position: relative; margin-block: 0; }
+nav { position: relative; margin-top: 40px; }
 nav::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: -23px; left: -22px; right: -20px; background: #000; border-radius: 0 0 22px 22px; }
+
+/* Inside (concave) corners where the panels meet the top strip */
+.brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
+nav::after { content: ""; position: absolute; z-index: -1; top: -10px; left: -44px; right: -42px; height: 22px;
+  background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px) left top / 22px 22px no-repeat, radial-gradient(circle at 100% 100%, transparent 21px, #000 22px) right top / 22px 22px no-repeat; }
+@media (max-width: 900px) { header { align-items: center; } nav { margin-top: 0; padding-bottom: 20px; } .brand::after, nav::after { display: none; } }
 /* headline */
 h1 {
   font-family: var(--text);
