@@ -48,10 +48,10 @@ p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 
 nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 18px; }
 nav a {
   font-family: var(--pixel); font-weight: 400; font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em;
-  text-decoration: none; padding: 4px 19px 3px;
-  /* chamfered outline: 8px cut corners */
-  border: 8px solid transparent; border-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpolygon%20points='8,.5%2016,.5%2023.5,8%2023.5,16%2016,23.5%208,23.5%20.5,16%20.5,8'%20fill='none'%20stroke='%23f3f2ee'%20stroke-width='1'/%3E%3C/svg%3E") 8 / 8px stretch;
-  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+  text-decoration: none; padding: 5px 20px 4px;
+  /* pixel-stepped corners, like the logo */
+  border: 7px solid transparent; border-image: url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2724%27%20height=%2724%27%20viewBox=%270%200%2024%2024%27%20shape-rendering=%27crispEdges%27%3E%3Cpath%20d=%27M.5%206.5H3.5V3.5H6.5V.5H17.5V3.5H20.5V6.5H23.5V17.5H20.5V20.5H17.5V23.5H6.5V20.5H3.5V17.5H.5Z%27%20fill=%27none%27%20stroke=%27%23f3f2ee%27%20stroke-width=%271%27/%3E%3C/svg%3E") 7 / 7px stretch;
+  clip-path: polygon(6px 0, calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px, 100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%, 6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px), 0 6px, 3px 6px, 3px 3px, 6px 3px);
 }
 nav a:hover { background: var(--fg); color: var(--bg); }
 
