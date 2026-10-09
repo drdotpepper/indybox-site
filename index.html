@@ -60,7 +60,7 @@ header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
 header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
 .brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
-nav { position: relative; margin-top: 40px; }
+nav { position: relative; margin-top: 32px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
@@ -69,15 +69,16 @@ nav { position: relative; margin-top: 40px; }
 h1 {
   font-family: var(--text);
   font-weight: 400;
-  font-size: clamp(2rem, 4.6vw, 3.7rem);
-  line-height: 1.18;
-  letter-spacing: 0.02em;
-  text-align: center;
-  text-wrap: balance;
+  font-size: clamp(2.6rem, 8.5vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-align: left;
   overflow-wrap: break-word;
-  margin: 84px auto 70px;
-  max-width: 1040px;
+  margin: 72px 0 36px;
 }
+h1 span { display: block; }
+.intro { max-width: 36rem; text-align: left; }
+.intro p { margin: 0 0 0.8em; font-size: 1.6rem; line-height: 1.2; }
 
 /* tiles */
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 53px); }
@@ -135,7 +136,6 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   <header>
     <div class="brand">
     <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-px.png" alt="indyBox" width="424" height="156"></a>
-    <p class="tagline">Your game their venue. Your venue their game.</p>
     </div>
     <nav aria-label="Sections">
       <a href="#story">Story</a>
@@ -146,22 +146,11 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   </header>
 
   <main id="top">
-    <h1>Custom arcade cabinets for taprooms and bars. Free to play. All indie games.</h1>
+    <h1><span>Your game their venue.</span> <span>Your venue their game.</span></h1>
 
-    <div class="tiles">
-      <a class="tile" href="#venues">
-        <div class="photo">
-          <img src="images/venues-cabinet.jpg" alt="An Indybox arcade cabinet with a lit brewery marquee, playing a retro platform game" width="900" height="900">
-        </div>
-        <span class="cap">Venues</span>
-      </a>
-
-      <a class="tile" href="#devs">
-        <div class="photo">
-          <img src="images/devs-computer.jpg" alt="A cream 90s PC with a CRT monitor showing an indie game, on a desk in a warmly lit study" width="1000" height="1000">
-        </div>
-        <span class="cap">Devs</span>
-      </a>
+    <div class="intro">
+      <p>Indybox puts custom arcade cabinets in taprooms and bars. Free to play, and every game on them is indie.</p>
+      <p>Venues get a cabinet built and wrapped to suit their place. Developers get their game in front of real players, standing next to each other with a pint in hand.</p>
     </div>
 
     <section id="story">
