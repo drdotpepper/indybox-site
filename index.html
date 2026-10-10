@@ -56,7 +56,7 @@ nav a {
 nav a:hover, nav a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
-body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translateZ(0); backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
+body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: scale(var(--zoom, 1)); transform-origin: var(--ox, 50%) var(--oy, 45%); will-change: transform; backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
 header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
@@ -259,6 +259,44 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 (function () {
   var h = Math.max(window.innerHeight, window.screen ? window.screen.height : 0);
   if (h) document.documentElement.style.setProperty('--bgh', h + 'px');
+})();
+</script>
+<script>
+// Backdrop zoom: once the visitor scrolls past the hook, the taproom photo eases in until the arcade cabinet is as wide as the screen.
+(function () {
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) return;
+  var IMG_W = 1600, IMG_H = 1202;           // taproom.jpg
+  var CAB_X = 808, CAB_Y = 540, CAB_W = 283; // cabinet centre and width in that image
+  var root = document.documentElement, hook = document.querySelector('h1');
+  var W, H, s0, zmax, hookTop, range, cur = 0, target = 0, raf = null;
+  function measure() {
+    W = window.innerWidth;
+    H = parseFloat(getComputedStyle(root).getPropertyValue('--bgh')) || window.innerHeight;
+    s0 = Math.max(W / IMG_W, H / IMG_H);
+    var ox = (W - IMG_W * s0) / 2 + CAB_X * s0, oy = (H - IMG_H * s0) / 2 + CAB_Y * s0;
+    root.style.setProperty('--ox', ox.toFixed(1) + 'px');
+    root.style.setProperty('--oy', oy.toFixed(1) + 'px');
+    zmax = Math.max(1, W / (CAB_W * s0));
+    hookTop = hook.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.2;
+    range = window.innerHeight * 1.3;
+    read();
+  }
+  function read() {
+    target = Math.max(0, Math.min(1, (window.scrollY - hookTop) / range));
+    if (!raf) raf = requestAnimationFrame(step);
+  }
+  function step() {
+    cur += (target - cur) * 0.1;
+    if (Math.abs(target - cur) < 0.0005) cur = target;
+    var e = cur * cur * (3 - 2 * cur); // smoothstep
+    root.style.setProperty('--zoom', (1 + (zmax - 1) * e).toFixed(4));
+    raf = cur === target ? null : requestAnimationFrame(step);
+  }
+  window.addEventListener('scroll', read, { passive: true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  measure();
 })();
 </script>
 <script>
