@@ -66,7 +66,20 @@ nav { position: relative; margin-top: 32px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
-@media (max-width: 900px) { header { align-items: center; } nav { margin-top: 0; padding-bottom: 20px; } .brand::after, nav::after { display: none; } }
+.burger { display: none; }
+@media (max-width: 900px) {
+  header { flex-wrap: nowrap; align-items: center; }
+  header::before { height: 100%; }
+  .brand { padding-block: 12px; }
+  .brand::before, .brand::after { display: none; }
+  .mark { width: 150px; }
+  .burger { display: flex; align-items: center; justify-content: flex-end; width: 64px; height: 48px; padding: 0; background: transparent; border: 0; cursor: pointer; }
+  .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  nav { display: none; position: absolute; top: 100%; left: calc(50% - 50vw); right: calc(50% - 50vw); flex-direction: column; align-items: stretch; gap: 10px; margin: 0; padding: 6px 20px 22px; background: #000; border-radius: 0 0 22px 22px; }
+  header.open nav { display: flex; }
+  nav a { text-align: center; font-size: 1.7rem; padding: 10px 20px 9px; }
+  h1 { margin-top: 56px; }
+}
 /* headline */
 h1 {
   font-family: var(--display);
@@ -82,6 +95,7 @@ h1 {
   margin: 140px 0 40px;
 }
 h1 span { display: block; }
+h1 i { font-style: inherit; white-space: nowrap; }
 .intro { max-width: 36rem; text-align: left; }
 .intro p { margin: 0 0 0.9em; font-size: 1.25rem; line-height: 1.45; }
 
@@ -142,7 +156,8 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <div class="brand">
     <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-px.png" alt="indyBox" width="424" height="156"></a>
     </div>
-    <nav aria-label="Sections">
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><rect x='5' y='0' width='6' height='1' fill='#ff7a00'/><rect x='3' y='1' width='10' height='1' fill='#ff7a00'/><rect x='2' y='2' width='12' height='1' fill='#ff7a00'/><rect x='1' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='5' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='9' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='13' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='2' y='4' width='12' height='1' fill='#6fcf4a'/><rect x='1' y='5' width='14' height='1' fill='#a65a2a'/><rect x='1' y='6' width='14' height='1' fill='#a65a2a'/><rect x='2' y='7' width='12' height='1' fill='#ff7a00'/><rect x='3' y='8' width='10' height='1' fill='#ff7a00'/></svg></button>
+    <nav id="menu" aria-label="Sections">
       <a href="#story">Story</a>
       <a href="#venues">Venues</a>
       <a href="#devs">Devs</a>
@@ -151,7 +166,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   </header>
 
   <main id="top">
-    <h1><span>Your game their venue.</span> <span>Your venue their game.</span></h1>
+    <h1><span><i>Your game</i> <i>their venue.</i></span> <span><i>Your venue</i> <i>their game.</i></span></h1>
 
     <div class="intro">
       <p>Indybox puts custom arcade cabinets in taprooms and bars. Free to play, and every game on them is indie.</p>
@@ -213,6 +228,15 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   <footer>&copy; 2026 Indybox &middot; East London &middot; Free to play &middot; <a href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">@indyboxgames</a></footer>
 </div>
 
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var b = document.getElementById('burger');
+  function set(open) { header.classList.toggle('open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  b.addEventListener('click', function () { set(!header.classList.contains('open')); });
+  document.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+})();
+</script>
 <script>
 (function () {
   var btn = document.getElementById('copy');
