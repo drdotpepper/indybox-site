@@ -66,9 +66,16 @@ nav { position: relative; margin-top: 32px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
-.burger { display: flex; align-items: center; justify-content: center; width: 84px; height: 48px; margin-top: 32px; padding: 0; background: transparent; border: 1px solid var(--fg); border-radius: 15px; cursor: pointer; transition: border-color .15s; }
-.burger:hover, header.open .burger { border-color: var(--accent); }
+.burger { display: flex; align-items: center; justify-content: center; gap: 12px; width: auto; height: 48px; margin-top: 32px; padding: 0 16px 0 20px; background: transparent; color: var(--fg); border: 1px solid var(--fg); border-radius: 15px; cursor: pointer; transition: border-color .15s, color .15s; }
+.burger-label { font-family: var(--pixel); font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em; padding-top: 2px; }
+.burger:hover, header.open .burger { border-color: var(--accent); color: var(--accent); }
 .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* Idle wiggle every few seconds, a quicker one on hover */
+.burger-ico { transform-origin: 50% 70%; animation: wiggle 9s ease-in-out 1.2s infinite; }
+.burger:hover .burger-ico { animation: hop .55s ease-in-out; }
+header.open .burger-ico { animation: none; }
+@keyframes wiggle { 0%, 14%, 100% { transform: none; } 2% { transform: rotate(-12deg) translateY(-4px); } 4% { transform: rotate(10deg) translateY(-1px); } 6% { transform: rotate(-7deg) translateY(-3px); } 8% { transform: rotate(5deg); } 10% { transform: rotate(-3deg) translateY(-1px); } 12% { transform: rotate(1deg); } }
+@keyframes hop { 0%, 100% { transform: none; } 25% { transform: rotate(-12deg) translateY(-4px); } 55% { transform: rotate(10deg) translateY(-2px); } 80% { transform: rotate(-4deg); } }
 /* Dropdown: a compact panel under the burger that drops out, buttons staggering in */
 nav { display: flex; position: absolute; top: 88px; right: 0; left: auto; width: min(230px, 100%); flex-direction: column; align-items: stretch; gap: 10px; margin: 0; padding: 14px; background: #000; border: 1px solid var(--line); border-radius: 15px; box-shadow: 0 14px 30px rgba(0,0,0,.55);
   opacity: 0; visibility: hidden; pointer-events: none; transform-origin: top right; transform: translateY(-10px) scale(.94);
@@ -87,7 +94,8 @@ header.open nav a:nth-child(4) { transition-delay: .20s; }
   .brand { padding-block: 12px; }
   .brand::before, .brand::after { display: none; }
   .mark { width: 150px; }
-  .burger { justify-content: flex-end; width: 64px; margin-top: 0; border: 0; }
+  .burger { margin-top: 0; border: 0; padding: 0; gap: 10px; }
+  .burger-label { font-size: 1.3rem; }
   nav { top: calc(100% + 10px); }
   h1 { margin-top: 56px; }
 }
@@ -154,7 +162,7 @@ footer a:hover { color: var(--fg); }
 footer { margin-top: 128px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
 
 html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-@media (prefers-reduced-motion: reduce) { nav, nav a { transition: none !important; transition-delay: 0s !important; } }
+@media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav, nav a { transition: none !important; transition-delay: 0s !important; } }
 </style>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="48x48">
@@ -168,7 +176,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <div class="brand">
     <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-px.png" alt="indyBox" width="424" height="156"></a>
     </div>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><rect x='5' y='0' width='6' height='1' fill='#ff7a00'/><rect x='3' y='1' width='10' height='1' fill='#ff7a00'/><rect x='2' y='2' width='12' height='1' fill='#ff7a00'/><rect x='1' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='5' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='9' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='13' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='2' y='4' width='12' height='1' fill='#6fcf4a'/><rect x='1' y='5' width='14' height='1' fill='#a65a2a'/><rect x='1' y='6' width='14' height='1' fill='#a65a2a'/><rect x='2' y='7' width='12' height='1' fill='#ff7a00'/><rect x='3' y='8' width='10' height='1' fill='#ff7a00'/></svg></button>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span class="burger-label">Menu</span><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><rect x='5' y='0' width='6' height='1' fill='#ff7a00'/><rect x='3' y='1' width='10' height='1' fill='#ff7a00'/><rect x='2' y='2' width='12' height='1' fill='#ff7a00'/><rect x='1' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='5' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='9' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='13' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='2' y='4' width='12' height='1' fill='#6fcf4a'/><rect x='1' y='5' width='14' height='1' fill='#a65a2a'/><rect x='1' y='6' width='14' height='1' fill='#a65a2a'/><rect x='2' y='7' width='12' height='1' fill='#ff7a00'/><rect x='3' y='8' width='10' height='1' fill='#ff7a00'/></svg></button>
     <nav id="menu" aria-label="Sections">
       <a href="#story">Story</a>
       <a href="#venues">Venues</a>
@@ -251,8 +259,19 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 (function () {
   var header = document.querySelector('header');
   var b = document.getElementById('burger');
+  var hoverMode = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var menu = document.getElementById('menu');
+  var timer = null;
   function set(open) { header.classList.toggle('open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  b.addEventListener('click', function () { set(!header.classList.contains('open')); });
+  function openNow() { clearTimeout(timer); set(true); }
+  function closeSoon() { clearTimeout(timer); timer = setTimeout(function () { set(false); }, 220); }
+  if (hoverMode) {
+    [b, menu].forEach(function (el) { el.addEventListener('mouseenter', openNow); el.addEventListener('mouseleave', closeSoon); });
+    b.addEventListener('click', function () { set(true); });
+  } else {
+    b.addEventListener('click', function () { set(!header.classList.contains('open')); });
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   document.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
 })();
 </script>
