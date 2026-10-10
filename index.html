@@ -158,8 +158,11 @@ ul.facts li:last-child { border-bottom: 1px solid var(--line); }
 }
 .btn:hover { background: var(--fg); color: var(--bg); }
 
-footer a:hover { color: var(--fg); }
-footer { margin-top: 128px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
+footer a:hover { color: var(--accent); }
+footer p { margin: 0; }
+footer p.contact { font-family: var(--pixel); font-size: clamp(1.6rem, 5vw, 2.4rem); letter-spacing: 0.03em; color: var(--fg); overflow-wrap: anywhere; }
+footer p.contact a { text-decoration: none; border-bottom: 1px solid var(--line); }
+footer { margin-top: 128px; display: flex; flex-direction: column; gap: 14px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
 
 html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 @media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav, nav a { transition: none !important; transition-delay: 0s !important; } }
@@ -236,18 +239,19 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <section id="enquire">
       <h2>Enquire</h2>
       <div class="body">
-        <p>Pubs, bars, breweries, or just you with a spare corner. Email us.</p>
-        <span class="email" id="email">rich@indybox.games</span>
+        <p>Pubs, bars, breweries, or just you with a spare corner. Drop us a line at the address at the bottom of this page, or find us on Instagram.</p>
         <div class="actions">
-          <a class="btn" href="mailto:rich@indybox.games">Email us</a>
-          <button class="btn" id="copy" type="button">Copy address</button>
+          <a class="btn" id="mailbtn" href="#contact">Email us</a>
           <a class="btn" href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>&copy; 2026 Indybox &middot; East London &middot; Free to play &middot; <a href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">@indyboxgames</a></footer>
+  <footer id="contact">
+    <p class="contact">Email: <span id="addr">rich [at] indybox [dot] games</span></p>
+    <p>&copy; 2026 Indybox &middot; East London &middot; Free to play &middot; <a href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">@indyboxgames</a></p>
+  </footer>
 </div>
 
 <script>
@@ -279,27 +283,19 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 </script>
 <script>
 (function () {
-  var btn = document.getElementById('copy');
-  var em = document.getElementById('email');
-  var label = btn.textContent;
-  btn.addEventListener('click', function () {
-    function reset() { setTimeout(function () { btn.textContent = label; }, 1800); }
-    function select() {
-      var r = document.createRange();
-      r.selectNodeContents(em);
-      var s = window.getSelection();
-      s.removeAllRanges();
-      s.addRange(r);
-      btn.textContent = 'Selected';
-      reset();
-    }
-    try {
-      navigator.clipboard.writeText(em.textContent.trim()).then(function () {
-        btn.textContent = 'Copied';
-        reset();
-      }, select);
-    } catch (e) { select(); }
-  });
+  // The address is assembled here, so it never appears as plain text or a mailto link in the page source.
+  var addr = ['rich', 'indybox', 'games'];
+  var email = addr[0] + '@' + addr[1] + '.' + addr[2];
+  var span = document.getElementById('addr');
+  if (span) {
+    var a = document.createElement('a');
+    a.href = 'mailto:' + email;
+    a.textContent = email;
+    span.textContent = '';
+    span.appendChild(a);
+  }
+  var btn = document.getElementById('mailbtn');
+  if (btn) btn.addEventListener('click', function (e) { e.preventDefault(); window.location.href = 'mailto:' + email; });
 })();
 
 // Gentle parallax on the tile photos. Skipped if the visitor prefers reduced motion.
