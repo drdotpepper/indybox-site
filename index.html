@@ -56,7 +56,7 @@ nav a {
 nav a:hover, nav a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
-body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; transform: translateZ(0); backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
+body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translateZ(0); backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
 header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
@@ -228,6 +228,13 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   <footer>&copy; 2026 Indybox &middot; East London &middot; Free to play &middot; <a href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">@indyboxgames</a></footer>
 </div>
 
+<script>
+// Fix the backdrop height once, so the address bar showing/hiding while scrolling never resizes it.
+(function () {
+  var h = Math.max(window.innerHeight, window.screen ? window.screen.height : 0);
+  if (h) document.documentElement.style.setProperty('--bgh', h + 'px');
+})();
+</script>
 <script>
 (function () {
   var header = document.querySelector('header');
