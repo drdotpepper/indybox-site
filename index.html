@@ -56,7 +56,7 @@ nav a {
 nav a:hover, nav a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
-body::before { content: ""; position: fixed; z-index: -1; inset: 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
+body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; transform: translateZ(0); backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
 header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
