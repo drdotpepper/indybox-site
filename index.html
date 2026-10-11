@@ -156,10 +156,13 @@ section > h2 { min-width: 0; margin: 0; font-family: var(--pixel); font-weight: 
 .row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
 .row .body { flex: 1 1 0; max-width: 32rem; }
 .art { flex: 0 0 auto; display: block; }
-.art img { display: block; width: 100%; height: auto; }
+.art img { display: block; width: 100%; height: auto; filter: drop-shadow(5px 5px 0 #000); }
+.row .body { text-align: left; }
+#devs .row .body { text-align: right; }
+#venues .facts li { text-align: left; }
 .art-cab { width: clamp(200px, 24vw, 280px); }
 .art-pc { width: clamp(260px, 32vw, 400px); }
-@media (max-width: 760px) { .row { flex-direction: column; gap: 24px; } .art-cab { width: min(58vw, 230px); } .art-pc { width: min(78vw, 340px); } }
+@media (max-width: 760px) { .row { flex-direction: column; gap: 24px; } .row .body, #devs .row .body, #venues .facts li { text-align: center; } .art-cab { width: min(58vw, 230px); } .art-pc { width: min(78vw, 340px); } }
 .body { width: 100%; min-width: 0; max-width: 32rem; }
 .body p { margin: 0 0 0.8em; }
 .body p:last-child { margin-bottom: 0; }
