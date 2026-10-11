@@ -66,7 +66,7 @@ nav { position: relative; margin-top: 32px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
-.burger { display: flex; align-items: center; justify-content: center; gap: 12px; width: auto; height: 48px; margin-top: 32px; padding: 0 18px; background: transparent; color: var(--fg); border-radius: 15px; cursor: pointer; transition: color .15s; }
+.burger { display: flex; align-items: center; justify-content: center; gap: 12px; width: auto; height: 48px; margin-top: 32px; padding: 0 18px; background: transparent; color: var(--fg); border: 0; border-radius: 15px; cursor: pointer; transition: color .15s; }
 .burger-label { font-family: var(--pixel); font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em; padding-top: 2px; }
 .burger:hover, header.open .burger { color: var(--accent); }
 .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
