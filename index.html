@@ -153,6 +153,13 @@ h1 i { font-style: inherit; white-space: nowrap; }
 /* sections */
 section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 104px; padding-top: 32px; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
 section > h2 { min-width: 0; margin: 0; font-family: var(--pixel); font-weight: 400; font-size: 3.4rem; letter-spacing: 0.03em; line-height: 1.05; }
+.row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
+.row .body { flex: 1 1 0; max-width: 32rem; }
+.art { flex: 0 0 auto; display: block; }
+.art img { display: block; width: 100%; height: auto; }
+.art-cab { width: clamp(200px, 24vw, 280px); }
+.art-pc { width: clamp(260px, 32vw, 400px); }
+@media (max-width: 760px) { .row { flex-direction: column; gap: 24px; } .art-cab { width: min(58vw, 230px); } .art-pc { width: min(78vw, 340px); } }
 .body { width: 100%; min-width: 0; max-width: 32rem; }
 .body p { margin: 0 0 0.8em; }
 .body p:last-child { margin-bottom: 0; }
@@ -219,6 +226,8 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 
     <section id="venues">
       <h2>For venues</h2>
+      <div class="row">
+      <picture class="art art-cab"><img src="images/cab-full.webp" width="555" height="1142" alt="An Indybox cabinet wrapped in a brewery's artwork" loading="lazy"></picture>
       <div class="body">
         <p>We build the cabinet, wrap it in graphics to suit your place and rent it to you by the month. It sits in your taproom or bar loaded with games from independent developers.</p>
         <p>Customers play for free. No coins, no cash to empty. The developers get their game in front of real players, and your regulars get something to stand around and argue over.</p>
@@ -229,13 +238,17 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
           <li>We install it and look after it</li>
         </ul>
       </div>
+      </div>
     </section>
 
     <section id="devs">
       <h2>Devs</h2>
+      <div class="row">
       <div class="body">
         <p>Make games? We want yours on the cabinets. Players find them in pubs and taprooms, with no store page to scroll past and nothing to download.</p>
         <p>We agree licensing with you before any game goes on a cabinet, and you decide whether it stays. Email us a link and a line about your game.</p>
+      </div>
+      <picture class="art art-pc"><img src="images/retro-pc.webp" width="900" height="850" alt="A retro beige PC running an indie game" loading="lazy"></picture>
       </div>
     </section>
 
