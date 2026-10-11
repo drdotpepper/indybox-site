@@ -277,6 +277,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 (function () {
   var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
   if (mq && mq.matches) return;
+  if (window.matchMedia && window.matchMedia("(min-width: 901px)").matches) return; // no zoom on desktop
   var IMG_W = 1600, IMG_H = 1202;           // taproom.jpg
   var CAB_X = 808, CAB_TOP = 180, CAB_W = 283; // cabinet centre x, top edge y and width in that image
   var TOP_GAP = 0.08;                        // where the cabinet top lands when fully zoomed, as a fraction of screen height
