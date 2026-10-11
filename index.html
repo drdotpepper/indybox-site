@@ -77,11 +77,11 @@ header.open .burger-ico { animation: none; }
 @keyframes wiggle { 0%, 14%, 100% { transform: none; } 2% { transform: translateX(-3px) rotate(-9deg); } 4% { transform: translateX(3px) rotate(8deg); } 6% { transform: translateX(-3px) rotate(-7deg); } 8% { transform: translateX(2px) rotate(5deg); } 10% { transform: translateX(-1px) rotate(-3deg); } 12% { transform: translateX(1px) rotate(1deg); } }
 @keyframes hop { 0%, 100% { transform: none; } 15% { transform: translateX(-3px) rotate(-9deg); } 35% { transform: translateX(3px) rotate(8deg); } 55% { transform: translateX(-3px) rotate(-6deg); } 75% { transform: translateX(2px) rotate(4deg); } }
 /* Dropdown: a compact panel under the burger that drops out, buttons staggering in */
-nav { display: flex; position: absolute; top: 88px; right: 0; left: auto; width: min(230px, 100%); flex-direction: column; align-items: stretch; gap: 10px; margin: 0; padding: 6px 0 0; background: none; border: 0;
+nav { display: flex; position: absolute; top: 88px; right: 0; left: auto; width: max-content; flex-direction: column; align-items: stretch; gap: 10px; margin: 0; padding: 6px 0 0; background: none; border: 0;
   opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0s linear .25s, visibility 0s linear .25s; }
 header.open nav { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
 /* Each button drops in on its own, top first, a split second apart */
-nav a { text-align: center; font-size: 1.5rem; padding: 10px 16px 9px; background: #000; opacity: 0; transform: translateY(-40px); transition: opacity .15s ease, transform .2s ease, background .15s, color .15s, border-color .15s; }
+nav a { text-align: center; font-size: 1.5rem; padding: 10px 24px 9px; background: #000; opacity: 0; transform: translateY(-40px); transition: opacity .15s ease, transform .2s ease, background .15s, color .15s, border-color .15s; }
 header.open nav a { opacity: 1; transform: none; transition: opacity .3s ease, transform .55s cubic-bezier(.2,.9,.25,1.2), background .15s, color .15s, border-color .15s; }
 header.open nav a:nth-child(1) { transition-delay: .00s, .00s, 0s, 0s, 0s; }
 header.open nav a:nth-child(2) { transition-delay: .13s, .13s, 0s, 0s, 0s; }
@@ -165,7 +165,7 @@ footer p.contact a { text-decoration: none; border-bottom: 1px solid var(--line)
 footer { margin-top: 128px; display: flex; flex-direction: column; gap: 14px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
 
 html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-@media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav, nav a { transition: none !important; transition-delay: 0s !important; } }
+@media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav a { transform: none !important; } }
 /* Soft black glow behind body text so it stays readable over the photo */
 .intro p, section h2, section p, ul.facts li, .email, footer { text-shadow: 0 0 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,.95), 0 0 26px rgba(0,0,0,.9), 0 0 50px rgba(0,0,0,.75); }
 </style>
