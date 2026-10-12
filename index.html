@@ -169,8 +169,8 @@ section > h2 { min-width: 0; margin: 0; font-family: var(--pixel); font-weight: 
 .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease, filter .2s; }
 .g-item:hover img, .g-item:focus-visible img { transform: scale(1.04); filter: brightness(1.12); }
 .g-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.g-wide { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
-.g-wide img { object-position: 50% 45%; }
+.g-wide { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+.g-wide img { object-position: 50% 33%; }
 @media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 #lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; color: var(--fg); }
 #lightbox::backdrop { background: rgba(0,0,0,.96); }
@@ -263,8 +263,8 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
       </div>
       </div>
       <div class="gallery" aria-label="Cabinet renders">
-<button type="button" class="g-item g-wide" data-i="0" data-full="images/gallery/1.webp" data-cap="Wrapped for a brewery, in the taproom"><img src="images/gallery/1-t.webp" width="800" height="601" alt="An Indybox cabinet in a brick-walled taproom" loading="lazy"></button>
-<button type="button" class="g-item" data-i="1" data-full="images/gallery/2.webp" data-cap="Players gather round the cabinet"><img src="images/gallery/2-t.webp" width="800" height="601" alt="Customers standing around an Indybox cabinet" loading="lazy"></button>
+<button type="button" class="g-item g-wide" data-i="0" data-full="images/gallery/2.webp" data-cap="Players gather round the cabinet"><img src="images/gallery/2-t.webp" width="800" height="601" alt="Customers standing around an Indybox cabinet" loading="lazy"></button>
+<button type="button" class="g-item" data-i="1" data-full="images/gallery/1.webp" data-cap="Wrapped for a brewery, in the taproom"><img src="images/gallery/1-t.webp" width="800" height="601" alt="An Indybox cabinet in a brick-walled taproom" loading="lazy"></button>
 <button type="button" class="g-item" data-i="2" data-full="images/gallery/3.webp" data-cap="The backlit marquee carries the brewery's logo"><img src="images/gallery/3-t.webp" width="800" height="601" alt="Close-up of the cabinet's lit marquee" loading="lazy"></button>
 <button type="button" class="g-item" data-i="3" data-full="images/gallery/4.webp" data-cap="Screen and controls"><img src="images/gallery/4-t.webp" width="800" height="601" alt="Close-up of the screen and joysticks" loading="lazy"></button>
 <button type="button" class="g-item" data-i="4" data-full="images/gallery/5.webp" data-cap="Front on"><img src="images/gallery/5-t.webp" width="800" height="601" alt="Front view of the cabinet" loading="lazy"></button>
