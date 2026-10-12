@@ -159,10 +159,11 @@ section > h2 { min-width: 0; margin: 0; font-family: var(--pixel); font-weight: 
 .art img { display: block; width: 100%; height: auto; filter: drop-shadow(5px 5px 0 #000); }
 .row .body { text-align: left; }
 #devs .row .body { text-align: right; }
+#devs .actions { justify-content: flex-end; }
 #venues .facts li { text-align: left; }
 .art-cab { width: clamp(200px, 24vw, 280px); }
 .art-pc { width: clamp(260px, 32vw, 400px); }
-@media (max-width: 760px) { .row { flex-direction: column; gap: 24px; } .row .body, #devs .row .body, #venues .facts li { text-align: center; } .art-cab { width: min(58vw, 230px); } .art-pc { width: min(78vw, 340px); } }
+@media (max-width: 760px) { .row { flex-direction: column; gap: 24px; } .row .body, #devs .row .body, #venues .facts li { text-align: center; } #devs .actions { justify-content: center; } .art-cab { width: min(58vw, 230px); } .art-pc { width: min(78vw, 340px); } }
 /* gallery */
 .gallery { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2vw, 22px); margin-top: 32px; }
 .g-item { all: unset; box-sizing: border-box; cursor: zoom-in; display: block; border-radius: 15px; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: 5px 5px 0 #000; background: #000; }
@@ -286,6 +287,11 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
       <div class="body">
         <p>Make games? We want yours on the cabinets. Players find them in pubs and taprooms, with no store page to scroll past and nothing to download.</p>
         <p>We agree licensing with you before any game goes on a cabinet, and you decide whether it stays. Email us a link and a line about your game.</p>
+        <p><b>Join the community.</b> Indybox is a growing group of indie developers whose games get played in real venues. Join to hear when new cabinets go live, get your game in the rotation, and meet other devs doing the same.</p>
+        <div class="actions">
+          <a class="btn" id="joinbtn" href="#contact">Join the community</a>
+          <a class="btn" href="https://www.instagram.com/indyboxgames/" target="_blank" rel="noopener">Instagram</a>
+        </div>
       </div>
       <picture class="art art-pc"><img src="images/retro-pc.webp" width="900" height="850" alt="A retro beige PC running an indie game" loading="lazy"></picture>
       </div>
@@ -402,6 +408,8 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   }
   var btn = document.getElementById('mailbtn');
   if (btn) btn.addEventListener('click', function (e) { e.preventDefault(); window.location.href = 'mailto:' + email; });
+  var jbtn = document.getElementById('joinbtn');
+  if (jbtn) jbtn.addEventListener('click', function (e) { e.preventDefault(); window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent('Joining the Indybox community') + '&body=' + encodeURIComponent('Hi, I make games and I would like to join the Indybox community.\n\nMy game: \nLink: \n'); });
 })();
 
 // Gentle parallax on the tile photos. Skipped if the visitor prefers reduced motion.
