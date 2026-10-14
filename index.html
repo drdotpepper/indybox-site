@@ -7,7 +7,7 @@
 <title>Indybox</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Barlow:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
 <style>
 /* Layout: one black column. Centred top bar (logo, then boxed nav buttons), wide-spaced serif caps headline, two photo tiles that jump to sections, plain system-font copy, tiny footer. Single dark look by choice. */
 :root {
@@ -21,7 +21,8 @@
   --screen: #050505;
   --accent: #ff7a00;
   --pixel: 'Jersey 10', 'Courier New', monospace;
-  --text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --head2: 'Archivo Black', 'Arial Black', Impact, sans-serif;
   --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   color-scheme: dark;
 }
@@ -146,7 +147,7 @@ h1 i { font-style: inherit; white-space: nowrap; }
 .photo img.game { object-fit: cover; object-position: 62% 50%; image-rendering: pixelated; }
 .photo svg { width: 50%; height: auto; display: block; }
 .note { position: absolute; left: 0; right: 0; bottom: 10px; font-size: 0.75rem; color: var(--muted); }
-.cap { display: inline-block; margin-top: 16px; font-family: var(--text); font-size: clamp(1.5rem, 4.4vw, 2rem); font-weight: 400; letter-spacing: 0.03em; border-bottom: 1px solid transparent; }
+.cap { display: inline-block; margin-top: 16px; font-family: var(--head2); font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; border-bottom: 1px solid transparent; }
 .tile:hover .photo { border-color: var(--fg); }
 .tile:hover .cap { border-bottom-color: var(--fg); }
 
@@ -195,7 +196,7 @@ ul.facts li { padding-block: 12px; border-top: 1px solid var(--line); }
 ul.facts li:last-child { border-bottom: 1px solid var(--line); }
 
 /* enquire */
-.email { display: block; font-family: var(--display); font-size: clamp(1.8rem, 6.5vw, 3rem); letter-spacing: 0.03em; overflow-wrap: anywhere; margin: 8px 0 24px; }
+.email { display: block; font-family: var(--head2); font-size: clamp(1.5rem, 5.5vw, 2.6rem); letter-spacing: 0.01em; overflow-wrap: anywhere; margin: 8px 0 24px; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 .btn {
   font: inherit; font-family: var(--pixel); font-size: 1.3rem; letter-spacing: 0.04em; text-decoration: none; border-radius: 15px;
