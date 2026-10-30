@@ -7,7 +7,7 @@
 <title>Indybox</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Barlow:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Rubik:ital,wght@1,900&family=Barlow:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
 <style>
 /* Layout: one black column. Centred top bar (logo, then boxed nav buttons), wide-spaced serif caps headline, two photo tiles that jump to sections, plain system-font copy, tiny footer. Single dark look by choice. */
 :root {
@@ -45,8 +45,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-of
 /* header: centred */
 header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0 32px; padding: 0; text-align: left; }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 16px 18px; }
-.mark { display: block; width: min(280px, 70vw); line-height: 0; }
-.mark img { display: block; width: 100%; height: auto; }
+.mark { display: block; width: min(212px, 70vw); line-height: 0; }
+.mark img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
 p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 1; letter-spacing: 0.02em; white-space: nowrap; }
 nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 18px; }
 nav a {
@@ -67,7 +67,7 @@ nav { position: relative; margin-top: 32px; }
 
 /* Inside (concave) corners where the panels meet the top strip */
 .brand::after { content: ""; position: absolute; z-index: -1; top: 30px; left: calc(100% + 52px); width: 22px; height: 22px; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
-.burger { display: flex; align-items: center; justify-content: center; gap: 12px; width: auto; height: 48px; margin-top: 17px; padding: 0 18px; background: transparent; color: var(--fg); border: 0; border-radius: 15px; cursor: pointer; transition: color .15s; }
+.burger { display: flex; align-items: center; justify-content: center; gap: 12px; width: auto; height: 48px; margin-top: 44px; padding: 0 18px; background: transparent; color: var(--fg); border: 0; border-radius: 15px; cursor: pointer; transition: color .15s; }
 .burger-label { font-family: var(--pixel); font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em; padding-top: 2px; }
 .burger:hover, header.open .burger { color: var(--accent); }
 .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -91,7 +91,7 @@ header.open nav a:nth-child(4) { transition-delay: .21s, .21s, 0s, 0s, 0s; }
 
 /* Desktop: buttons fire out sideways, to the left of the burger, nearest one first */
 @media (min-width: 901px) {
-  nav { top: 17px; right: 100px; flex-direction: row; align-items: center; gap: 10px; padding: 0; }
+  nav { top: 44px; right: 100px; flex-direction: row; align-items: center; gap: 10px; padding: 0; }
   nav a { height: 48px; display: flex; align-items: center; padding: 2px 18px 0; transform: translateX(34px) scale(.9); transition: opacity .1s ease, transform .15s ease, background .15s, color .15s, border-color .15s; }
   header.open nav a { transform: none; transition: opacity .15s ease, transform .26s cubic-bezier(.2,.9,.25,1.25), background .15s, color .15s, border-color .15s; }
   header.open nav a:nth-child(4) { transition-delay: .00s, .00s, 0s, 0s, 0s; }
@@ -105,7 +105,7 @@ header.open nav a:nth-child(4) { transition-delay: .21s, .21s, 0s, 0s, 0s; }
   header::before { height: 100%; }
   .brand { padding-block: 12px; }
   .brand::before, .brand::after { display: none; }
-  .mark { width: 170px; }
+  .mark { width: 150px; }
   .burger { margin-top: 0; border: 0; padding: 0; gap: 10px; }
   .burger-label { font-size: 1.3rem; }
   nav { top: calc(100% + 10px); }
@@ -113,11 +113,11 @@ header.open nav a:nth-child(4) { transition-delay: .21s, .21s, 0s, 0s, 0s; }
 }
 /* headline */
 h1 {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.8rem, 9vw, 6.8rem);
-  line-height: 0.98;
-  letter-spacing: 0.01em;
+  font-family: 'Rubik', 'Arial Black', Impact, sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.9rem, 6.4vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-align: center;
   font-style: italic;
@@ -127,6 +127,7 @@ h1 {
 }
 h1 span { display: block; }
 h1 i { font-style: inherit; white-space: nowrap; }
+@media (max-width: 900px) { h1 { font-size: clamp(1.9rem, 11.2vw, 4.6rem); } }
 .intro { max-width: 36rem; margin-inline: auto; text-align: center; }
 .intro p { margin: 0 0 0.9em; font-size: 1.25rem; line-height: 1.45; }
 
@@ -225,7 +226,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 <div class="wrap">
   <header>
     <div class="brand">
-    <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo.png" alt="Indybox" width="700" height="130"></a>
+    <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-px.png" alt="indyBox" width="424" height="156"></a>
     </div>
     <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><rect x='5' y='0' width='6' height='1' fill='#ff7a00'/><rect x='3' y='1' width='10' height='1' fill='#ff7a00'/><rect x='2' y='2' width='12' height='1' fill='#ff7a00'/><rect x='1' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='5' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='9' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='13' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='2' y='4' width='12' height='1' fill='#6fcf4a'/><rect x='1' y='5' width='14' height='1' fill='#a65a2a'/><rect x='1' y='6' width='14' height='1' fill='#a65a2a'/><rect x='2' y='7' width='12' height='1' fill='#ff7a00'/><rect x='3' y='8' width='10' height='1' fill='#ff7a00'/></svg></button>
     <nav id="menu" aria-label="Sections">
