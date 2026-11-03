@@ -57,7 +57,7 @@ nav a {
 nav a:hover, nav a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
-body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(var(--zoom, 1)); transform-origin: 0 0; will-change: transform; backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") center / cover no-repeat; }
+body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(var(--zoom, 1)); transform-origin: 0 0; will-change: transform; backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg") 50% 42% / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
 header { position: relative; isolation: isolate; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
@@ -346,7 +346,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   if (mq && mq.matches) return;
   if (window.matchMedia && window.matchMedia("(min-width: 901px)").matches) return; // no zoom on desktop
   var IMG_W = 1600, IMG_H = 1202;           // taproom.jpg
-  var CAB_X = 808, CAB_TOP = 180, CAB_W = 283; // cabinet centre x, top edge y and width in that image
+  var CAB_X = 806, CAB_TOP = 165, CAB_W = 308; // cabinet centre x, top edge y and width in that image
   var TOP_GAP = 0.08;                        // where the cabinet top lands when fully zoomed, as a fraction of screen height
   var root = document.documentElement, hook = document.querySelector('h1');
   var W, H, s0, zmax, txF = 0, tyF = 0, hookTop, range, cur = 0, target = 0, raf = null;
