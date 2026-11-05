@@ -38,7 +38,7 @@ body {
   font-size: 1.1rem;
   line-height: 1.5;
   padding-inline: 20px;
-  padding-block: 0 32px;
+  padding-block: 0;
   overflow-x: clip;
 }
 .wrap { max-width: 1175px; margin-inline: auto; }
@@ -60,9 +60,9 @@ nav a {
 nav a:hover, nav a:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
 /* Page backdrop: taproom photo, dimmed, fixed behind everything. Content scrolls over it. */
-/* The page itself is black. The taproom photo only shows through the windows cut into it: the hero and each section (see 'windows' below). */
+body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(var(--zoom, 1)); transform-origin: 0 0; will-change: transform; backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg?v=3") 50% 42% / cover no-repeat; }
 /* Header: solid black strip across the full width of the screen */
-header { position: relative; isolation: isolate; }
+header { position: relative; isolation: isolate; z-index: 5; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
 header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
 .brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
@@ -156,17 +156,18 @@ h1 i { font-style: inherit; white-space: nowrap; }
 .tile:hover .cap { border-bottom-color: var(--fg); }
 
 /* sections */
-/* Windows: the black page is the frame, and the hero and each section are windows cut into it, like frames on a film reel.
-   Each window holds its own copy of the fixed backdrop, clipped to the window's rounded shape. */
-.hero, section { position: relative; isolation: isolate; clip-path: inset(0 round 22px); margin-inline: calc(var(--pillar) - 20px); padding-inline: max(28px, calc((100% - 1175px) / 2 - var(--pillar) + 20px)); }
-.hero::before, section::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; height: var(--bgh, 100lvh); transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(var(--zoom, 1)); transform-origin: 0 0; will-change: transform; backface-visibility: hidden; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.68)), url("images/taproom.jpg?v=3") 50% 42% / cover no-repeat; }
+/* Windows: the hero and each section are windows in a black frame, like frames on a film reel. There is one fixed backdrop
+   behind the whole page; each window paints a huge black shadow around itself (::after), cropped to half the gap above and
+   below, so the black of neighbouring windows meets in the middle and only the windows show the photo. */
+.hero, section { position: relative; isolation: isolate; margin-inline: calc(var(--pillar) - 20px); padding-inline: max(28px, calc((100% - 1175px) / 2 - var(--pillar) + 20px)); }
+.hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: 22px; box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
-section::before { background: linear-gradient(rgba(0,0,0,0.66), rgba(0,0,0,0.82)), url("images/taproom.jpg?v=3") 50% 42% / cover no-repeat; }
+section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 22px; background: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
 section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 40px; padding-block: 44px 52px; scroll-margin-top: 16px; }
 main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) 44px; }
 /* Desktop: the first window starts under the thin black strip, so the logo box overlaps its top-left corner */
-@media (min-width: 901px) { :root { --ov: 82px; } header { z-index: 5; } }
+@media (min-width: 901px) { :root { --ov: 82px; } }
 section > h2 { min-width: 0; margin: 0; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
 .row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
 .row .body { flex: 1 1 0; max-width: 32rem; }
@@ -222,12 +223,12 @@ footer a:hover { color: var(--accent); }
 footer p { margin: 0; }
 footer p.contact { font-family: var(--pixel); font-size: clamp(1.6rem, 5vw, 2.4rem); letter-spacing: 0.03em; color: var(--fg); overflow-wrap: anywhere; }
 footer p.contact a { text-decoration: none; border-bottom: 1px solid var(--line); }
-footer { margin-top: 48px; padding: 24px 20px 8px; display: flex; flex-direction: column; gap: 14px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
+footer { margin: 0 -20px; padding: 48px 40px 40px; background: #000; display: flex; flex-direction: column; gap: 14px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1.1rem; color: var(--muted); }
 
 html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 @media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav a { transform: none !important; } }
 /* Soft black glow behind body text so it stays readable over the photo */
-.intro p, section h2, section p, ul.facts li, .email, footer { text-shadow: 0 0 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,.95), 0 0 26px rgba(0,0,0,.9), 0 0 50px rgba(0,0,0,.75); }
+.intro p, section h2, section p, ul.facts li, .email, footer { text-shadow: 0 0 5px rgba(0,0,0,.9), 0 0 16px rgba(0,0,0,.7); }
 </style>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="48x48">
