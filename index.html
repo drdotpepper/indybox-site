@@ -162,7 +162,14 @@ h1 i { font-style: inherit; white-space: nowrap; }
 .hero, section { position: relative; isolation: isolate; margin-inline: calc(var(--pillar) - 20px); padding-inline: max(28px, calc((100% - 1175px) / 2 - var(--pillar) + 20px)); }
 .hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: 22px; box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
-section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 22px; background: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
+/* Each section window also gets a wash of colour picked from the photo (purples and yellows). --tint-a is how strong it is. */
+section { --tint-a: 0.10; }
+#story { --tint: 123, 63, 228; }
+#venues { --tint: 255, 196, 40; }
+#devs { --tint: 90, 80, 255; }
+#at-home { --tint: 255, 150, 30; }
+#enquire { --tint: 180, 60, 220; }
+section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 22px; background: linear-gradient(rgba(var(--tint), var(--tint-a)), rgba(var(--tint), var(--tint-a))), linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
 section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 40px; padding-block: 44px 52px; scroll-margin-top: 16px; }
 main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) 44px; }
