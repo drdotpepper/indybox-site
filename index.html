@@ -229,6 +229,9 @@ ul.facts { list-style: none; margin: 32px 0 0; padding: 0; }
 /* Section text matches the hero lines: Rubik Medium, tight leading */
 section p, ul.facts li { font-weight: 500; font-size: 1.4rem; line-height: 1.28; }
 @media (max-width: 600px) { section p, ul.facts li { font-size: 1.22rem; } }
+/* Phones: body paragraphs run edge to edge as a justified block (long words are hyphenated to avoid big gaps) */
+@media (max-width: 600px) { section { padding-inline: 20px; } section p, ul.facts li { font-size: 1.15rem; } }
+@media (max-width: 760px) { section p { text-align: justify; text-align-last: left; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; } }
 ul.facts li { padding-block: 12px; border-top: 1px solid var(--line); }
 ul.facts li:last-child { border-bottom: 1px solid var(--line); }
 
