@@ -138,9 +138,9 @@ h1 i { font-style: inherit; white-space: nowrap; }
 /* Phones: the hook becomes a four-line block, each line sized by script to span the full width */
 @media (max-width: 760px) { h1 i { display: block; width: max-content; margin-inline: auto; } }
 @media (max-width: 900px) { :root { --h1fs: clamp(1.9rem, 11.2vw, 4.6rem); } }
-.intro { max-width: 36rem; margin-inline: auto; text-align: center; }
+.intro { max-width: 30rem; margin-inline: auto; text-align: center; }
 .intro p { margin: 0; font-family: 'Rubik', Arial, sans-serif; font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.22; letter-spacing: -0.005em; }
-.intro p span { display: block; }
+.intro p { text-wrap: balance; }
 
 /* tiles */
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 53px); }
@@ -285,7 +285,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <h1><span><i>Your game</i> <i>their venue.</i></span> <span><i>Your venue</i> <i>their game.</i></span></h1>
 
     <div class="intro">
-      <p><span>Built for your venue.</span> <span>Free to play.</span> <span>Every game indie.</span></p>
+      <p>Bringing indie developers and players together, one cabinet at a time.</p>
     </div>
     </div>
 
