@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Indybox hook test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&family=Jersey+10&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #ff7a00; --muted: #8c8b87; --h1fs: clamp(1.9rem, 6.4vw, 5rem); }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0 14px 70px; background: #000; color: #f3f2ee; font-family: 'Rubik', sans-serif; }
+.top { max-width: 1100px; margin: 0 auto; }
+h1.t { font-family: 'Jersey 10', monospace; font-weight: 400; font-size: 2rem; margin: 26px 0 4px; }
+.lead { color: var(--muted); margin: 0 0 8px; max-width: 60ch; line-height: 1.5; }
+.v { max-width: 1100px; margin: 26px auto 0; }
+.tag { font-family: 'Jersey 10', monospace; font-size: 1.45rem; color: var(--accent); margin: 0 0 8px; }
+.tag small { font-size: 1.05rem; color: var(--muted); margin-left: 8px; }
+.win { border-radius: clamp(22px, 3vw, 44px); padding: clamp(28px, 5vw, 56px) 16px; text-align: center; background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.68)), url("images/taproom.jpg?v=3") 50% 42% / cover; overflow: hidden; }
+.win h2 { margin: 0 0 22px; text-transform: uppercase; line-height: 1.04; font-size: var(--h1fs); font-family: 'Rubik', 'Arial Black', sans-serif; }
+.win h2 span { display: block; }
+.win h2 i { font-style: inherit; white-space: nowrap; }
+.win p { margin: 0 auto; max-width: 30rem; font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.22; letter-spacing: -.005em; text-wrap: balance; text-shadow: 0 0 5px rgba(0,0,0,.9), 0 0 16px rgba(0,0,0,.7); }
+@media (max-width: 760px) { .win h2 i { display: block; width: max-content; margin-inline: auto; } }
+
+/* the variants */
+.a h2 { font-weight: 900; font-style: italic; text-shadow: 5px 5px 0 #000; }                       /* current */
+.b h2 { font-weight: 800; font-style: italic; text-shadow: 3px 3px 0 rgba(0,0,0,.85); }             /* a bit lighter, smaller shadow */
+.c h2 { font-weight: 800; font-style: italic; text-shadow: 0 2px 22px rgba(0,0,0,.9), 0 0 4px rgba(0,0,0,.8); } /* soft glow, no hard shadow */
+.d h2 { font-weight: 800; font-style: normal; text-shadow: 3px 3px 0 rgba(0,0,0,.85); }             /* upright */
+.e h2 { font-weight: 700; font-style: normal; text-shadow: 0 2px 22px rgba(0,0,0,.9), 0 0 4px rgba(0,0,0,.8); letter-spacing: .01em; } /* calm: bold, upright, soft */
+.f h2 { font-weight: 800; font-style: italic; font-size: calc(var(--h1fs) * .78); text-shadow: 3px 3px 0 rgba(0,0,0,.85); } /* smaller */
+</style>
+</head>
+<body>
+<div class="top">
+  <h1 class="t">Hook test</h1>
+  <p class="lead">The same hook in six styles. A is the live one. Look at them on your phone and on your computer, and tell me the letter of the one you like. All six use the new line underneath.</p>
+</div>
+
+<div class="v a"><div class="tag">A <small>live now: Black 900, italic, hard shadow</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+<div class="v b"><div class="tag">B <small>ExtraBold 800, italic, smaller shadow</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+<div class="v c"><div class="tag">C <small>ExtraBold 800, italic, soft glow instead of a shadow</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+<div class="v d"><div class="tag">D <small>ExtraBold 800, upright, smaller shadow</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+<div class="v e"><div class="tag">E <small>Bold 700, upright, soft glow: the calmest</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+<div class="v f"><div class="tag">F <small>ExtraBold 800, italic, about 20% smaller</small></div><div class="win"><h2><span><i>Your game</i> <i>their venue.</i></span><span><i>Your venue</i> <i>their game.</i></span></h2><p>Bringing indie developers and players together, one cabinet at a time.</p></div></div>
+
+<script>
+/* same block fitting as the live site: on phones each line is sized to span the width */
+(function () {
+  var mq = window.matchMedia('(max-width: 760px)');
+  function fit() {
+    document.querySelectorAll('.win h2').forEach(function (h) {
+      var lines = h.querySelectorAll('i'), i;
+      for (i = 0; i < lines.length; i++) lines[i].style.fontSize = '';
+      if (!mq.matches) return;
+      var target = (h.clientWidth - 8) * 0.97 * (h.closest('.f') ? 0.8 : 1);
+      for (i = 0; i < lines.length; i++) {
+        var w = lines[i].getBoundingClientRect().width, fs = parseFloat(getComputedStyle(lines[i]).fontSize);
+        if (w > 0) lines[i].style.fontSize = (fs * target / w).toFixed(2) + 'px';
+      }
+    });
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener('load', fit); window.addEventListener('resize', fit);
+  if (mq.addEventListener) mq.addEventListener('change', fit);
+})();
+</script>
+</body>
+</html>
