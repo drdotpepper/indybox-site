@@ -25,8 +25,9 @@
   --head2: 'Archivo Black', 'Arial Black', Impact, sans-serif;
   --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   --h1fs: clamp(1.9rem, 6.4vw, 5rem);
-  --pillar: clamp(10px, 5vw, 100px); /* width of the black frame down each side */
+  --pillar: clamp(10px, 4vw, 80px); /* width of the black frame down each side */
   --ov: 0px;
+  --wr: clamp(22px, 3vw, 52px); /* corner radius of the windows */
   color-scheme: dark;
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
@@ -94,7 +95,11 @@ header.open nav a:nth-child(4) { transition-delay: .21s, .21s, 0s, 0s, 0s; }
 
 /* Desktop: buttons fire out sideways, to the left of the burger, nearest one first */
 @media (min-width: 901px) {
-  nav { top: 44px; right: 100px; flex-direction: row; align-items: center; gap: 10px; padding: 0; }
+  .burger { position: relative; height: 62px; margin-top: 30px; padding: 0 26px; background: #000; border-radius: 0 0 26px 26px; }
+  .burger::before, .burger::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
+  .burger::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
+  .burger::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
+  nav { top: 37px; right: 130px; flex-direction: row; align-items: center; gap: 10px; padding: 0; }
   nav a { height: 48px; display: flex; align-items: center; padding: 2px 18px 0; transform: translateX(34px) scale(.9); transition: opacity .1s ease, transform .15s ease, background .15s, color .15s, border-color .15s; }
   header.open nav a { transform: none; transition: opacity .15s ease, transform .26s cubic-bezier(.2,.9,.25,1.25), background .15s, color .15s, border-color .15s; }
   header.open nav a:nth-child(4) { transition-delay: .00s, .00s, 0s, 0s, 0s; }
@@ -160,8 +165,13 @@ h1 i { font-style: inherit; white-space: nowrap; }
    behind the whole page; each window paints a huge black shadow around itself (::after), cropped to half the gap above and
    below, so the black of neighbouring windows meets in the middle and only the windows show the photo. */
 .hero, section { position: relative; isolation: isolate; margin-inline: calc(var(--pillar) - 20px); padding-inline: max(28px, calc((100% - 1175px) / 2 - var(--pillar) + 20px)); }
-.hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: 22px; box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
+.hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: var(--wr); box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
+/* Section titles hang from the top edge of their window in a black tab, with small curved joins where the tab meets the frame */
+section > h2::before, section > h2::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
+section > h2::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
+section > h2::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
+@media (max-width: 600px) { section > h2 { padding: 12px 28px 10px; } }
 /* Each section window also gets a wash of colour picked from the photo (purples and yellows). --tint-a is how strong it is. */
 section { --tint-a: 0.10; }
 #story { --tint: 123, 63, 228; }
@@ -169,13 +179,13 @@ section { --tint-a: 0.10; }
 #devs { --tint: 90, 80, 255; }
 #at-home { --tint: 255, 150, 30; }
 #enquire { --tint: 180, 60, 220; }
-section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 22px; background: linear-gradient(rgba(var(--tint), var(--tint-a)), rgba(var(--tint), var(--tint-a))), linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
+section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: var(--wr); background: linear-gradient(rgba(var(--tint), var(--tint-a)), rgba(var(--tint), var(--tint-a))), linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
 section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 40px; padding-block: 44px 52px; scroll-margin-top: 16px; }
 main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) 44px; }
 /* Desktop: the first window starts under the thin black strip, so the logo box overlaps its top-left corner */
 @media (min-width: 901px) { :root { --ov: 82px; } }
-section > h2 { min-width: 0; margin: 0; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
+section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14px; padding: 16px 44px 14px; background: #000; border-radius: 0 0 26px 26px; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
 .row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
 .row .body { flex: 1 1 0; max-width: 32rem; }
 .art { flex: 0 0 auto; display: block; }
