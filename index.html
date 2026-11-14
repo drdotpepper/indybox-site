@@ -80,14 +80,8 @@ nav { position: relative; margin-top: 32px; }
 .burger-label { font-family: var(--pixel); font-size: 1.45rem; line-height: 1; letter-spacing: 0.04em; padding-top: 2px; }
 .burger:hover, header.open .burger { color: var(--accent); }
 .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-/* Idle wiggle every few seconds, a quicker one on hover */
-.burger-ico { transform-origin: 50% 85%; animation: wiggle 9s ease-in-out 1.2s infinite; }
-.burger:hover .burger-ico { animation: hop .55s ease-in-out; }
-header.open .burger-ico { animation: none; }
-.burger-ico .cap { transition: transform .08s; }
-header.open .burger-ico .cap { transform: translateY(3px); } /* the cap sinks while the menu is open, like a pressed button */
-@keyframes wiggle { 0%, 14%, 100% { transform: none; } 2% { transform: translateX(-3px) rotate(-9deg); } 4% { transform: translateX(3px) rotate(8deg); } 6% { transform: translateX(-3px) rotate(-7deg); } 8% { transform: translateX(2px) rotate(5deg); } 10% { transform: translateX(-1px) rotate(-3deg); } 12% { transform: translateX(1px) rotate(1deg); } }
-@keyframes hop { 0%, 100% { transform: none; } 15% { transform: translateX(-3px) rotate(-9deg); } 35% { transform: translateX(3px) rotate(8deg); } 55% { transform: translateX(-3px) rotate(-6deg); } 75% { transform: translateX(2px) rotate(4deg); } }
+.burger-ico .cap { transition: transform .06s linear; }
+.burger:active .burger-ico .cap, header.open .burger-ico .cap { transform: translateY(6px); } /* clicks straight down while pressed, and stays down while the menu is open */
 /* Dropdown: a compact panel under the burger that drops out, buttons staggering in */
 nav { display: flex; position: absolute; top: 88px; right: 0; left: auto; width: max-content; flex-direction: column; align-items: stretch; gap: 10px; margin: 0; padding: 6px 0 0; background: none; border: 0;
   opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0s linear .25s, visibility 0s linear .25s; }
@@ -260,7 +254,7 @@ footer p.contact a { text-decoration: none; border-bottom: 1px solid var(--line)
 footer { margin: 0 -20px; padding: 48px 40px 40px; background: #000; display: flex; flex-direction: column; gap: 14px; text-align: center; font-family: var(--text); font-weight: 400; font-size: 1rem; color: var(--muted); }
 
 html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-@media (prefers-reduced-motion: reduce) { .burger-ico { animation: none !important; } nav a { transform: none !important; } }
+@media (prefers-reduced-motion: reduce) { .burger-ico .cap { transition: none; } nav a { transform: none !important; } }
 /* Soft black glow behind body text so it stays readable over the photo */
 .intro p, section h2, section p, ul.facts li, .email, footer { text-shadow: 0 0 5px rgba(0,0,0,.9), 0 0 16px rgba(0,0,0,.7); }
 </style>
@@ -276,7 +270,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <div class="brand">
     <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-bold.png" alt="indyBox" width="720" height="121"></a>
     </div>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 120 54' width='68' height='31' aria-hidden='true'><defs><linearGradient id='abBase' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff5a4d'/><stop offset='1' stop-color='#d21616'/></linearGradient><linearGradient id='abSide' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#c41515'/><stop offset='1' stop-color='#8f0d0d'/></linearGradient><linearGradient id='abCap' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff6a5e'/><stop offset='1' stop-color='#e21d1d'/></linearGradient></defs><path d='M2 30v8a58 14 0 0 0 116 0v-8z' fill='url(#abSide)'/><ellipse cx='60' cy='30' rx='58' ry='14' fill='url(#abBase)'/><ellipse cx='60' cy='30' rx='42' ry='10.5' fill='#c01212'/><ellipse cx='60' cy='29' rx='42' ry='10' fill='none' stroke='#ff7f74' stroke-opacity='.35' stroke-width='1'/><g class='cap'><path d='M26 22v8a34 9 0 0 0 68 0v-8z' fill='url(#abSide)'/><ellipse cx='60' cy='22' rx='34' ry='9' fill='url(#abCap)'/><ellipse cx='60' cy='22.5' rx='27' ry='6' fill='none' stroke='#b81010' stroke-opacity='.45' stroke-width='1'/><ellipse cx='46' cy='17.5' rx='15' ry='2.4' fill='#fff' fill-opacity='.28' transform='rotate(-6 46 17.5)'/></g></svg></button>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 84 56' width='50' height='33' aria-hidden='true'><defs><linearGradient id='abBase' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff5a4d'/><stop offset='1' stop-color='#d21616'/></linearGradient><linearGradient id='abSide' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#cf1818'/><stop offset='1' stop-color='#8f0d0d'/></linearGradient><linearGradient id='abCap' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#ff6a5e'/><stop offset='1' stop-color='#e21d1d'/></linearGradient><clipPath id='abClip'><path d='M0 0H84V34H71A29 8.5 0 0 1 13 34H0Z'/></clipPath></defs><path d='M4 34v8a38 11 0 0 0 76 0v-8z' fill='url(#abSide)'/><ellipse cx='42' cy='34' rx='38' ry='11' fill='url(#abBase)'/><ellipse cx='42' cy='34' rx='29' ry='8.5' fill='#a90f0f'/><g clip-path='url(#abClip)'><g class='cap'><path d='M16 19v15a26 7.5 0 0 0 52 0v-15z' fill='url(#abSide)'/><ellipse cx='42' cy='19' rx='26' ry='7.5' fill='url(#abCap)'/><ellipse cx='42' cy='19.5' rx='20' ry='5' fill='none' stroke='#b81010' stroke-opacity='.4' stroke-width='1'/><ellipse cx='32' cy='15.5' rx='11' ry='2' fill='#fff' fill-opacity='.3' transform='rotate(-6 32 15.5)'/></g></g></svg></button>
     <nav id="menu" aria-label="Sections">
       <a href="#story">Story</a>
       <a href="#venues">Venues</a>
