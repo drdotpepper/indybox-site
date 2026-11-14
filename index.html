@@ -43,7 +43,9 @@ body {
   padding-block: 0;
   overflow-x: clip;
 }
-.wrap { max-width: 1175px; margin-inline: auto; }
+.wrap { max-width: 1175px; margin-inline: auto; position: sticky; top: 0; z-index: 5; pointer-events: none; }
+/* The header stays at the top while scrolling. Its empty parts let clicks through to the page; only the logo, burger and menu catch them. */
+.mark, .burger, nav a { pointer-events: auto; }
 a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
@@ -66,7 +68,9 @@ body::before { content: ""; position: fixed; z-index: -1; top: 0; left: 0; width
 /* Header: solid black strip across the full width of the screen */
 header { position: relative; isolation: isolate; z-index: 5; }
 /* Black top strip + two black panels with rounded bottom corners; photo shows between them */
-header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; }
+header::before { content: ""; position: absolute; z-index: -1; top: 0; height: 30px; left: calc(50% - 50vw); right: calc(50% - 50vw); background: #000; transition: height .2s ease; }
+/* once the page has scrolled, the black strip grows into a solid bar so text doesn't show through behind the logo and menu */
+header.stuck::before { height: 100%; }
 .brand::before { content: ""; position: absolute; z-index: -1; top: -100px; bottom: 0; left: -100vw; right: -52px; background: #000; border-radius: 0 0 22px 0; }
 nav { position: relative; margin-top: 32px; }
 
@@ -183,7 +187,7 @@ section { --tint-a: 0.10; }
 #at-home { --tint: 255, 150, 30; }
 #enquire { --tint: 180, 60, 220; }
 section::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: var(--wr); background: linear-gradient(rgba(var(--tint), var(--tint-a)), rgba(var(--tint), var(--tint-a))), linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.44)); }
-section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 40px; padding-block: 44px 52px; scroll-margin-top: 16px; }
+section { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 40px; padding-block: 44px 52px; scroll-margin-top: 64px; }
 main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) 44px; }
 /* Desktop: the first window starts under the thin black strip, so the logo box overlaps its top-left corner */
@@ -535,6 +539,19 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   window.addEventListener('load', fit);
   window.addEventListener('resize', fit);
   if (mq.addEventListener) mq.addEventListener('change', fit);
+})();
+
+/* mark the header once the page has scrolled, so it can turn into a solid bar */
+(function () {
+  var hd = document.querySelector('header');
+  if (!hd) return;
+  var on = false;
+  function check() {
+    var now = (window.scrollY || window.pageYOffset) > 40;
+    if (now !== on) { on = now; hd.classList.toggle('stuck', on); }
+  }
+  check();
+  window.addEventListener('scroll', check, { passive: true });
 })();
 </script>
 
