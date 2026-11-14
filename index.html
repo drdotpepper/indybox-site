@@ -84,6 +84,8 @@ nav { position: relative; margin-top: 32px; }
 .burger-ico { transform-origin: 50% 85%; animation: wiggle 9s ease-in-out 1.2s infinite; }
 .burger:hover .burger-ico { animation: hop .55s ease-in-out; }
 header.open .burger-ico { animation: none; }
+.burger-ico .dome { transition: transform .08s; }
+header.open .burger-ico .dome { transform: translateY(1px); } /* button looks pressed while the menu is open */
 @keyframes wiggle { 0%, 14%, 100% { transform: none; } 2% { transform: translateX(-3px) rotate(-9deg); } 4% { transform: translateX(3px) rotate(8deg); } 6% { transform: translateX(-3px) rotate(-7deg); } 8% { transform: translateX(2px) rotate(5deg); } 10% { transform: translateX(-1px) rotate(-3deg); } 12% { transform: translateX(1px) rotate(1deg); } }
 @keyframes hop { 0%, 100% { transform: none; } 15% { transform: translateX(-3px) rotate(-9deg); } 35% { transform: translateX(3px) rotate(8deg); } 55% { transform: translateX(-3px) rotate(-6deg); } 75% { transform: translateX(2px) rotate(4deg); } }
 /* Dropdown: a compact panel under the burger that drops out, buttons staggering in */
@@ -274,7 +276,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     <div class="brand">
     <a class="mark" href="#top" aria-label="Indybox home"><img src="images/indybox-logo-bold.png" alt="indyBox" width="720" height="121"></a>
     </div>
-    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><rect x='5' y='0' width='6' height='1' fill='#ff7a00'/><rect x='3' y='1' width='10' height='1' fill='#ff7a00'/><rect x='2' y='2' width='12' height='1' fill='#ff7a00'/><rect x='1' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='5' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='9' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='13' y='3' width='2' height='1' fill='#6fcf4a'/><rect x='2' y='4' width='12' height='1' fill='#6fcf4a'/><rect x='1' y='5' width='14' height='1' fill='#a65a2a'/><rect x='1' y='6' width='14' height='1' fill='#a65a2a'/><rect x='2' y='7' width='12' height='1' fill='#ff7a00'/><rect x='3' y='8' width='10' height='1' fill='#ff7a00'/></svg></button>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg class='burger-ico' viewBox='0 0 16 9' width='52' height='29' shape-rendering='crispEdges' aria-hidden='true'><g class='dome'><rect x='5' y='0' width='6' height='1' fill='#e8261f'/><rect x='3' y='1' width='10' height='1' fill='#e8261f'/><rect x='5' y='1' width='2' height='1' fill='#ff9a90'/><rect x='2' y='2' width='12' height='1' fill='#e8261f'/><rect x='4' y='2' width='2' height='1' fill='#ff9a90'/><rect x='1' y='3' width='14' height='1' fill='#e8261f'/><rect x='3' y='3' width='1' height='1' fill='#ff9a90'/><rect x='1' y='4' width='14' height='1' fill='#a8140f'/></g><rect x='0' y='5' width='16' height='1' fill='#d9d9d9'/><rect x='0' y='6' width='16' height='1' fill='#8a8a8a'/><rect x='2' y='7' width='12' height='1' fill='#555555'/><rect x='2' y='8' width='12' height='1' fill='#3d3d3d'/></svg></button>
     <nav id="menu" aria-label="Sections">
       <a href="#story">Story</a>
       <a href="#venues">Venues</a>
