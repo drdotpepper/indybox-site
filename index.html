@@ -57,7 +57,7 @@ header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-conten
 p.tagline { margin: 0; font-family: var(--pixel); font-size: 1rem; line-height: 1; letter-spacing: 0.02em; white-space: nowrap; }
 nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 18px; }
 nav a {
-  font-family: 'Patua One', 'Rubik', 'Arial Black', Impact, sans-serif; font-style: normal; text-transform: uppercase; font-weight: 400; font-size: 1.1rem; line-height: 1; letter-spacing: 0.02em;
+  font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; text-transform: uppercase; font-weight: 900; font-size: 1.1rem; line-height: 1; letter-spacing: 0.02em;
   text-decoration: none; padding: 12px 28px 11px;
   border: 1px solid transparent; border-radius: 15px;
 }
@@ -121,14 +121,14 @@ header.open nav a:nth-child(4) { transition-delay: .21s, .21s, 0s, 0s, 0s; }
 }
 /* headline */
 h1 {
-  font-family: 'Patua One', 'Rubik', 'Arial Black', Impact, sans-serif;
-  font-weight: 400;
+  font-family: 'Rubik', 'Arial Black', Impact, sans-serif;
+  font-weight: 900;
   font-size: var(--h1fs);
   line-height: 1.04;
   letter-spacing: 0;
   text-transform: uppercase;
   text-align: center;
-  font-style: normal;
+  font-style: italic;
   text-shadow: 5px 5px 0 #000;
   overflow-wrap: break-word;
   margin: 0 0 32px;
@@ -189,7 +189,7 @@ main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) clamp(140px, 13vw, 195px); }
 /* Desktop: the first window starts under the thin black strip, so the logo box overlaps its top-left corner */
 @media (min-width: 901px) { :root { --ov: 82px; } }
-section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14px; padding: 16px 44px 14px; background: #000; border-radius: 0 0 26px 26px; font-family: 'Patua One', 'Rubik', 'Arial Black', Impact, sans-serif; font-style: normal; font-weight: 400; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
+section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14px; padding: 16px 44px 14px; background: #000; border-radius: 0 0 26px 26px; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
 .row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
 .row .body { flex: 1 1 0; max-width: 32rem; }
 .art { flex: 0 0 auto; display: block; }
@@ -283,7 +283,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 
   <main id="top">
     <div class="hero">
-    <h1><span><i>Your game</i> <i>their venue.</i></span> <span><i>Your venue</i> <i>their game.</i></span></h1>
+    <h1><span><i>Your game</i> <i>&amp; their venue.</i></span> <span><i>Your venue</i> <i>&amp; their game.</i></span></h1>
 
     <div class="intro">
       <p>Bringing indie developers and players together, one cabinet at a time.</p>
