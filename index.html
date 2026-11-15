@@ -135,6 +135,7 @@ h1 {
 }
 h1 span { display: block; }
 h1 i { font-style: inherit; white-space: nowrap; }
+h1 .amp { font-weight: inherit; color: #ff8a14; } /* same orange as the BOX in the logo */
 /* Phones: the hook becomes a four-line block, each line sized by script to span the full width */
 @media (max-width: 760px) { h1 i { display: block; width: max-content; margin-inline: auto; } }
 @media (max-width: 900px) { :root { --h1fs: clamp(1.9rem, 11.2vw, 4.6rem); } }
@@ -283,7 +284,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 
   <main id="top">
     <div class="hero">
-    <h1><span><i>Your game</i> <i>&amp; their venue.</i></span> <span><i>Your venue</i> <i>&amp; their game.</i></span></h1>
+    <h1><span><i>Your game</i> <i><b class="amp">&amp;</b> their venue.</i></span> <span><i>Your venue</i> <i><b class="amp">&amp;</b> their game.</i></span></h1>
 
     <div class="intro">
       <p>Bringing indie developers and players together, one cabinet at a time.</p>
