@@ -7,7 +7,7 @@
 <title>Indybox</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Rubik:ital,wght@0,400;0,500;1,900&family=Londrina+Solid:wght@300;400;900&family=Barlow:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Rubik:ital,wght@0,400;0,500;1,900&family=Patua+One&family=Barlow:wght@400;500&family=Jersey+10&display=swap" rel="stylesheet">
 <style>
 /* Layout: one black column. Centred top bar (logo, then boxed nav buttons), wide-spaced serif caps headline, two photo tiles that jump to sections, plain system-font copy, tiny footer. Single dark look by choice. */
 :root {
@@ -21,7 +21,7 @@
   --screen: #050505;
   --accent: #ff7a00;
   --pixel: 'Jersey 10', 'Courier New', monospace;
-  --text: 'Londrina Solid', 'Rubik', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text: 'Patua One', 'Rubik', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --head2: 'Archivo Black', 'Arial Black', Impact, sans-serif;
   --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   --h1fs: clamp(1.9rem, 6.4vw, 5rem);
@@ -139,9 +139,9 @@ h1 i { font-style: inherit; white-space: nowrap; }
 @media (max-width: 760px) { h1 i { display: block; width: max-content; margin-inline: auto; } }
 @media (max-width: 900px) { :root { --h1fs: clamp(1.9rem, 11.2vw, 4.6rem); } }
 .intro { max-width: none; margin-inline: auto; text-align: center; }
-.intro p { margin: 0; font-family: var(--text); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2rem); line-height: 1.15; letter-spacing: .01em; }
+.intro p { margin: 0; font-family: var(--text); font-weight: 400; font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.2; letter-spacing: .005em; }
 .intro p { text-wrap: balance; }
-@media (min-width: 640px) { .intro p { white-space: nowrap; font-size: clamp(1.15rem, 3vw, 2rem); } } /* one line from tablet up; phones keep two balanced lines so the text stays readable */
+@media (min-width: 640px) { .intro p { white-space: nowrap; font-size: clamp(1rem, 2.6vw, 1.7rem); } } /* one line from tablet up; phones keep two balanced lines so the text stays readable */
 
 /* tiles */
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 53px); }
@@ -228,13 +228,13 @@ section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14p
 .body p { margin: 0 0 0.8em; }
 .body p:last-child { margin-bottom: 0; }
 ul.facts { list-style: none; margin: 32px 0 0; padding: 0; }
-.body b { font-weight: 900; }
+.body b { font-weight: 400; }
 /* Section text matches the hero lines: Rubik Medium, tight leading */
-section p, ul.facts li { font-weight: 400; font-size: 1.65rem; line-height: 1.2; letter-spacing: .01em; }
-@media (max-width: 600px) { section p, ul.facts li { font-size: 1.4rem; } }
+section p, ul.facts li { font-weight: 400; font-size: 1.4rem; line-height: 1.25; letter-spacing: .005em; }
+@media (max-width: 600px) { section p, ul.facts li { font-size: 1.2rem; } }
 /* Phones: body paragraphs run edge to edge as a justified block (long words are hyphenated to avoid big gaps) */
 @media (max-width: 760px) { .hero { padding-inline: 14px; } }
-@media (max-width: 600px) { section { padding-inline: 20px; } section p, ul.facts li { font-size: 1.35rem; } }
+@media (max-width: 600px) { section { padding-inline: 20px; } section p, ul.facts li { font-size: 1.15rem; } }
 @media (max-width: 760px) { section p { text-align: justify; text-align-last: left; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; } }
 ul.facts li { padding-block: 12px; border-top: 1px solid var(--line); }
 ul.facts li:last-child { border-bottom: 1px solid var(--line); }
