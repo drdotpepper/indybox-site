@@ -190,6 +190,16 @@ section > h2::after { left: 100%; background: radial-gradient(circle at 100% 100
 @media (max-width: 600px) { section > h2 { padding: 12px 28px 10px; } }
 /* Each section window also gets a wash of colour picked from the photo (purples and yellows). --tint-a is how strong it is. */
 section { --tint-a: 0.20; }
+/* Story: one photo, one line, three tiles */
+#story .row .body, #story .row .body p { text-align: left; }
+#story .row .body p { font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.12; }
+#story .art-photo { width: clamp(280px, 44vw, 560px); }
+ul.tiles { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; max-width: 900px; margin: 36px 0 0; padding: 0; }
+ul.tiles li { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 14px 18px; background: rgba(0,0,0,.55); border-radius: 15px; text-align: center; text-shadow: none; }
+ul.tiles svg { margin-bottom: 8px; }
+ul.tiles b { font-family: 'Patua One', sans-serif; font-weight: 400; font-size: 1.35rem; line-height: 1.1; color: #fff; }
+ul.tiles span { font-size: 1.05rem; color: #cfcfcf; }
+@media (max-width: 760px) { #story .row .body, #story .row .body p { text-align: center; } ul.tiles { grid-template-columns: 1fr; gap: 10px; } ul.tiles li { flex-direction: row; justify-content: flex-start; text-align: left; gap: 14px; padding: 14px 18px; flex-wrap: wrap; } ul.tiles svg { margin: 0; flex: 0 0 auto; } ul.tiles b { font-size: 1.2rem; } ul.tiles li { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; row-gap: 0; align-items: center; } ul.tiles svg { grid-row: 1 / 3; } }
 #story .body p:first-child { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; }
 #story { --tint: 123, 63, 228; }
 #venues { --tint: 255, 196, 40; }
@@ -313,10 +323,17 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
 
     <section id="story">
       <h2>Story</h2>
-      <div class="body">
-        <p>Games are better when you play them standing next to someone. A cabinet in a taproom puts friends round one screen again, with a pint in hand and a high score to beat.</p>
-        <p>Indybox puts independent games on those cabinets. Venues get something people talk about, and small developers get somewhere real for people to find their work.</p>
+      <div class="row">
+        <picture class="art art-photo"><img src="images/gallery/3-t.webp?v=6" width="800" height="601" alt="A player at an Indybox cabinet in a brewery taproom" loading="lazy"></picture>
+        <div class="body">
+          <p>Games are better when you play them standing next to someone.</p>
+        </div>
       </div>
+      <ul class="tiles">
+        <li><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#ff8a14" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M24 22v10M10 40h28M14 40l3-8h14l3 8"/></svg><b>Free to play</b><span>No coins, ever</span></li>
+        <li><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#ff8a14" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="10" width="34" height="30" rx="5"/><path d="M7 20h34M16 6v8M32 6v8M18 30l4 4 8-8"/></svg><b>New games monthly</b><span>Sent over the air</span></li>
+        <li><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#ff8a14" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l14-8 14 8v20l-14 8-14-8z"/><path d="M10 14l14 8 14-8M24 22v20"/></svg><b>Made for your venue</b><span>Your name, your art</span></li>
+      </ul>
     </section>
 
     <section id="venues">
