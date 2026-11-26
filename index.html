@@ -173,6 +173,7 @@ h1 .amp { font-weight: inherit; }
 .hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: var(--wr); box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
 /* Section titles hang from the top edge of their window in a black tab, with small curved joins where the tab meets the frame */
+section > h2 img { display: block; height: clamp(26px, 3.4vw, 38px); width: auto; } /* titles drawn to echo the INDYBOX logo lettering, smaller than the logo */
 section > h2 { align-self: flex-start; } /* titles sit under the logo, at the left edge of the content */
 section > h2::before, section > h2::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
 section > h2::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
@@ -192,7 +193,7 @@ main { margin-top: calc(-1 * var(--ov)); }
 .hero { margin-top: 0; padding-block: calc(140px + var(--h1fs) + var(--ov)) clamp(100px, 9vw, 135px); }
 /* Desktop: the first window starts under the thin black strip, so the logo box overlaps its top-left corner */
 @media (min-width: 901px) { :root { --ov: 82px; } }
-section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14px; padding: 16px 44px 14px; background: #000; border-radius: 0 0 26px 26px; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
+section > h2 { position: relative; z-index: 3; min-width: 0; margin: -44px 0 14px; padding: 18px 44px 16px; background: #000; border-radius: 0 0 26px 26px; font-family: 'Rubik', 'Arial Black', Impact, sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(1.9rem, 8vw, 3.2rem); letter-spacing: 0; line-height: 1.05; }
 .row { display: flex; align-items: center; justify-content: center; gap: clamp(28px, 6vw, 80px); width: 100%; }
 .row .body { flex: 1 1 0; max-width: 32rem; }
 .art { flex: 0 0 auto; display: block; }
@@ -302,7 +303,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     </div>
 
     <section id="story">
-      <h2>Story</h2>
+      <h2><img src="images/titles/story.svg?v=1" alt="Story"></h2>
       <div class="body">
         <p>Games are better when you play them standing next to someone. A cabinet in a taproom puts friends round one screen again, with a pint in hand and a high score to beat.</p>
         <p>Indybox puts independent games on those cabinets. Venues get something people talk about, and small developers get somewhere real for people to find their work.</p>
@@ -310,7 +311,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     </section>
 
     <section id="venues">
-      <h2>For venues</h2>
+      <h2><img src="images/titles/venues.svg?v=1" alt="For venues"></h2>
       <div class="row">
       <picture class="art art-cab"><img src="images/cab-full-2.webp" width="533" height="1142" alt="An Indybox cabinet wrapped in a brewery's artwork" loading="lazy"></picture>
       <div class="body">
@@ -343,7 +344,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     </section>
 
     <section id="devs">
-      <h2>For devs</h2>
+      <h2><img src="images/titles/devs.svg?v=1" alt="For devs"></h2>
       <div class="row">
       <picture class="art art-pc"><img src="images/retro-pc.webp" width="900" height="850" alt="A retro beige PC running an indie game" loading="lazy"></picture>
       <div class="body">
@@ -359,7 +360,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     </section>
 
     <section id="at-home">
-      <h2>At home</h2>
+      <h2><img src="images/titles/home.svg?v=1" alt="At home"></h2>
       <div class="row">
       <div class="body">
         <p>Want one for the games room? Choose the look and the games. We build the cabinet and print the graphics ourselves in East London.</p>
@@ -373,7 +374,7 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
     </section>
 
     <section id="enquire">
-      <h2>Enquire</h2>
+      <h2><img src="images/titles/enquire.svg?v=1" alt="Enquire"></h2>
       <div class="body">
         <p>Pubs, bars, breweries, or just you with a spare corner. Drop us a line at the address at the bottom of this page, or find us on Instagram.</p>
         <div class="actions">
