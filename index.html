@@ -185,7 +185,6 @@ h1 .amp { font-weight: inherit; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
 /* Section titles hang from the top edge of their window in a black tab, with small curved joins where the tab meets the frame */
 section > h2 img { display: block; height: clamp(26px, 3.4vw, 38px); width: auto; } /* titles drawn to echo the INDYBOX logo lettering, smaller than the logo */
-section > h2 { align-self: flex-start; } /* titles sit under the logo, at the left edge of the content */
 section > h2::before, section > h2::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
 section > h2::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
 section > h2::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
@@ -468,6 +467,15 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   } else {
     b.addEventListener('click', function () { set(!header.classList.contains('open')); });
   }
+  // With a mouse, the menu closes as soon as the pointer is away from the button and the menu buttons.
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse' || !header.classList.contains('open')) return;
+    var pad = 14, over = [b].concat([].slice.call(document.querySelectorAll('nav a'))).some(function (el) {
+      var r = el.getBoundingClientRect();
+      return e.clientX >= r.left - pad && e.clientX <= r.right + pad && e.clientY >= r.top - pad && e.clientY <= r.bottom + pad;
+    });
+    if (over) clearTimeout(timer); else closeSoon();
+  });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   document.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
 })();
@@ -576,25 +584,6 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   }
   check();
   window.addEventListener('scroll', check, { passive: true });
-})();
-
-// Line each section title up with the left edge of the logo, at any screen width.
-(function () {
-  var mark = document.querySelector('.mark');
-  if (!mark) return;
-  function align() {
-    var titles = document.querySelectorAll('section > h2'), i;
-    for (i = 0; i < titles.length; i++) titles[i].style.marginLeft = '';
-    var target = mark.getBoundingClientRect().left;
-    for (i = 0; i < titles.length; i++) {
-      var d = target - titles[i].getBoundingClientRect().left;
-      if (Math.abs(d) > 0.5) titles[i].style.marginLeft = d + 'px';
-    }
-  }
-  align();
-  window.addEventListener('resize', align);
-  window.addEventListener('load', align);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
 })();
 </script>
 
