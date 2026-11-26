@@ -173,6 +173,8 @@ h1 .amp { font-weight: inherit; }
 .hero::after, section::after { content: ""; position: absolute; z-index: 2; inset: 0; border-radius: var(--wr); box-shadow: 0 0 0 100vmax #000; clip-path: inset(-22px -100vmax -22px -100vmax); pointer-events: none; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
 /* Section titles hang from the top edge of their window in a black tab, with small curved joins where the tab meets the frame */
+section > h2 { align-self: flex-start; } /* titles sit under the logo, at the left edge of the content */
+@media (max-width: 600px) { section > h2 { margin-left: -16px; } }
 section > h2::before, section > h2::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
 section > h2::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
 section > h2::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
