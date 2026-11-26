@@ -174,7 +174,6 @@ h1 .amp { font-weight: inherit; }
 /* Section windows are dimmed a little more than the hero, so body text stays easy to read */
 /* Section titles hang from the top edge of their window in a black tab, with small curved joins where the tab meets the frame */
 section > h2 { align-self: flex-start; } /* titles sit under the logo, at the left edge of the content */
-@media (max-width: 600px) { section > h2 { margin-left: -16px; } }
 section > h2::before, section > h2::after { content: ""; position: absolute; top: 0; width: 22px; height: 22px; }
 section > h2::before { right: 100%; background: radial-gradient(circle at 0 100%, transparent 21px, #000 22px); }
 section > h2::after { left: 100%; background: radial-gradient(circle at 100% 100%, transparent 21px, #000 22px); }
@@ -565,6 +564,25 @@ html{background:#000}body{margin:0}img{max-width:100%}[hidden]{display:none!impo
   }
   check();
   window.addEventListener('scroll', check, { passive: true });
+})();
+
+// Line each section title up with the left edge of the logo, at any screen width.
+(function () {
+  var mark = document.querySelector('.mark');
+  if (!mark) return;
+  function align() {
+    var titles = document.querySelectorAll('section > h2'), i;
+    for (i = 0; i < titles.length; i++) titles[i].style.marginLeft = '';
+    var target = mark.getBoundingClientRect().left;
+    for (i = 0; i < titles.length; i++) {
+      var d = target - titles[i].getBoundingClientRect().left;
+      if (Math.abs(d) > 0.5) titles[i].style.marginLeft = d + 'px';
+    }
+  }
+  align();
+  window.addEventListener('resize', align);
+  window.addEventListener('load', align);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
 })();
 </script>
 
